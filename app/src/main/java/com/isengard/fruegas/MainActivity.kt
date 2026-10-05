@@ -13,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var editTextId: EditText
@@ -61,6 +62,33 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
+    }
+    //logs
+    override fun onStart() {
+        super.onStart()
+        Log.d("FraguasIsengard", "onStart: Las fraguas se encienden")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FraguasIsengard", "onResume: Los Uruk-hai marchan a pleno rendimiento")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("FraguasIsengard", "onPause: Saruman detiene la producción temporalmente")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("FraguasIsengard", "onStop: Las fraguas quedan en silencio")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("FraguasIsengard", "onDestroy: Isengard cae bajo las aguas de los Ents")
     }
     private fun enviarTropa() {
         val identificador = editTextId.text.toString().trim()
