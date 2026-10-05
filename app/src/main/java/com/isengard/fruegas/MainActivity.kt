@@ -65,6 +65,34 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("id", editTextId.text.toString())
+        outState.putInt("tipo", spinnerTipo.selectedItemPosition)
+        outState.putInt("equipo", radioGroup.checkedRadioButtonId)
+        outState.putBoolean("antorcha", checkAntorcha.isChecked)
+        outState.putBoolean("error", editTextId.error != null)
+        Log.d("FraguasIsengard", "onSaveInstanceState: Se guardan los planos de la tropa")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        editTextId.setText(savedInstanceState.getString("id", ""))
+        spinnerTipo.setSelection(savedInstanceState.getInt("tipo", 0))
+
+        val equipoGuardado = savedInstanceState.getInt("equipo", -1)
+        if (equipoGuardado != -1) {
+            radioGroup.check(equipoGuardado)
+        }
+
+        checkAntorcha.isChecked = savedInstanceState.getBoolean("antorcha", false)
+
+        if (savedInstanceState.getBoolean("error", false)) {
+            editTextId.error = "El ejército no acepta soldados anónimos"
+        }
+        Log.d("FraguasIsengard", "onRestoreInstanceState: Se recuperan los planos de la tropa")
+    }
     //logs
     override fun onStart() {
         super.onStart()
