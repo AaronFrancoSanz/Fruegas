@@ -47,12 +47,26 @@ class MainActivity : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerTipo.adapter = adapter
+
+        editTextId.requestFocus() //foco
+
+        //Perdida del foco, aunque no se si en algún momento lo pierde
+        editTextId.setOnFocusChangeListener { _, tieneFoco ->
+            if (!tieneFoco && editTextId.text.toString().trim().isEmpty()) {
+                editTextId.error = "El ejército no acepta soldados anónimos"
+            }
+        }
+        btnEnviar.setOnClickListener {
+            enviarTropa()
+        }
+
+
     }
     private fun enviarTropa() {
         val identificador = editTextId.text.toString().trim()
-
         if (identificador.isEmpty()) {
-            editTextId.error = "Introduce el identificador"
+            editTextId.error = "El ejército no acepta soldados anónimos"
+            editTextId.requestFocus()
             return
         }
 
@@ -65,9 +79,10 @@ class MainActivity : AppCompatActivity() {
         val equipo = findViewById<RadioButton>(radioGroup.checkedRadioButtonId).text.toString()
         val antorcha = if (checkAntorcha.isChecked) "Sí" else "No"
 
-        rbArmadura.text = getString(R.string.armadura_hierro)
-        rbEscudo.text = getString(R.string.escudo_isengard)
-        checkAntorcha.text = getString(R.string.llevar_antorcha)
-
+        Toast.makeText(
+            this,
+            "¡Unidad $identificador enviada al Abismo de Helm!",
+            Toast.LENGTH_LONG
+        ).show()
     }
 }
