@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Fruegas</string>
+    <string name="app_name">Uruk-hai</string>
+
+    <string name="armadura_hierro">Armadura de Hierro</string>
+    <string name="escudo_isengard">Escudo de Isengard</string>
+    <string name="llevar_antorcha">Llevar Antorcha de Polvorín</string>
+
+    <string-array name="tipos_unidad">
+        <item>Guerrero</item>
+        <item>Arquero</item>
+        <item>Explorador</item>
+        <item>Berserker</item>
+    </string-array>
 </resources>
